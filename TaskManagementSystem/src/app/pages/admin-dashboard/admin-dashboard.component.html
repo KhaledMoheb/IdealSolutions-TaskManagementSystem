@@ -1,0 +1,156 @@
+<app-header [username]="'Admin'" (logout)="handleLogout()"> </app-header>
+
+<div class="dashboard-container">
+  <!-- Tabs for Users and Tasks -->
+  <div class="tabs">
+    <button
+      [class.active]="activeTab === 'users'"
+      (click)="setActiveTab('users')"
+    >
+      Users
+    </button>
+    <button
+      [class.active]="activeTab === 'tasks'"
+      (click)="setActiveTab('tasks')"
+    >
+      Tasks
+    </button>
+  </div>
+
+  <!-- Users Section -->
+  <section *ngIf="activeTab === 'users'">
+    <h2>Manage Users</h2>
+
+    <!-- User Form for Creating New User -->
+    <div class="user-form">
+      <h3>Create User</h3>
+      <input
+        type="text"
+        [(ngModel)]="newUser.userName"
+        placeholder="Name"
+        required
+      />
+      <input
+        type="email"
+        [(ngModel)]="newUser.email"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="newUser.phoneNumber"
+        placeholder="Phone Number"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="newUser.password"
+        placeholder="Password"
+        required
+      />
+      <button (click)="createUser()">Add User</button>
+    </div>
+
+    <!-- User List -->
+    <ul class="user-list">
+      <li *ngFor="let user of users">
+        <strong>{{ user.userName }}</strong> (ID: {{ user.id }})
+        <button (click)="selectedUser = user">Edit</button>
+        <button (click)="deleteUser(user.id)">Delete</button>
+      </li>
+    </ul>
+
+    <!-- Edit User Form -->
+    <div *ngIf="selectedUser" class="user-form">
+      <h3>Edit User</h3>
+      <input
+        type="text"
+        [(ngModel)]="selectedUser.userName"
+        placeholder="Name"
+        required
+      />
+      <input
+        type="email"
+        [(ngModel)]="selectedUser.email"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="selectedUser.phoneNumber"
+        placeholder="Phone Number"
+      />
+      <input
+        type="password"
+        [(ngModel)]="selectedUser.password"
+        placeholder="New Password"
+      />
+      <button (click)="updateUser()">Update</button>
+      <button (click)="selectedUser = null">Cancel</button>
+    </div>
+  </section>
+
+  <!-- Tasks Section -->
+  <section *ngIf="activeTab === 'tasks'">
+    <h2>Manage Tasks</h2>
+    <div class="task-form">
+      <h3>Create Task</h3>
+      <input
+        type="text"
+        [(ngModel)]="newTask.title"
+        placeholder="Title"
+        required
+      />
+      <textarea
+        [(ngModel)]="newTask.description"
+        placeholder="Description"
+        required
+      ></textarea>
+      <select [(ngModel)]="newTask.assignedUserId">
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.userName }} (ID: {{ user.id }})
+        </option>
+      </select>
+      <button (click)="createTask()">Add Task</button>
+    </div>
+
+    <ul class="task-list">
+      <li *ngFor="let task of tasks">
+        <strong>{{ task.title }}</strong> - {{ task.description }}
+        <span [ngStyle]="{ color: getStatusColor(task.status) }"
+          >({{ task.status }})</span
+        >
+        <small>Assigned to: {{ getUserName(task.assignedUserId) }}</small>
+        <button (click)="selectedTask = task">Edit</button>
+        <button (click)="deleteTask(task.id)">Delete</button>
+      </li>
+    </ul>
+
+    <div *ngIf="selectedTask" class="task-form">
+      <h3>Edit Task</h3>
+      <input
+        type="text"
+        [(ngModel)]="selectedTask.title"
+        placeholder="Title"
+        required
+      />
+      <textarea
+        [(ngModel)]="selectedTask.description"
+        placeholder="Description"
+        required
+      ></textarea>
+      <select [(ngModel)]="selectedTask.status">
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+      <select [(ngModel)]="selectedTask.assignedUserId">
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.userName }} (ID: {{ user.id }})
+        </option>
+      </select>
+      <button (click)="updateTask()">Update</button>
+      <button (click)="selectedTask = null">Cancel</button>
+    </div>
+  </section>
+</div>

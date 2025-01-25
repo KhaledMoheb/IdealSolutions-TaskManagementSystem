@@ -1,0 +1,25 @@
+<app-header 
+  [username]="username" 
+  (logout)="handleLogout()">
+</app-header>
+
+
+<div class="dashboard-container">
+  <h1>User Dashboard</h1>
+
+  <!-- Task List -->
+  <div class="task-list">
+    <div *ngFor="let task of tasks" class="task-card">
+      <h2>{{ task.title }}</h2>
+      <p>{{ task.description }}</p>
+      <p>
+        Status:
+        <span [class]="task.status">{{ task.status | titlecase }}</span>
+      </p>
+
+      <button class="btn" (click)="updateTaskStatus(task)">
+        Update Status
+      </button>
+    </div>
+  </div>
+</div>
