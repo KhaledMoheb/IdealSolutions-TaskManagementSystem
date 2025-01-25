@@ -13,7 +13,7 @@ Follow the instructions below to set up, run, and test the application.
 - **ASP.NET Core 8.0** (or compatible version)
 - **Node.js** (for Angular)
 - **Angular CLI** (for Angular project)
-- **SQL Server** (or another database of your choice, though we're using an in-memory database in this project)
+- **SQL Server** (we're using an in-memory database in this project)
 - **Swagger UI** (for API testing)
 - **Visual Studio** (for opening and running the ASP.NET backend)
 
