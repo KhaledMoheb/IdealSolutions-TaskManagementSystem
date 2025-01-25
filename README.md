@@ -25,7 +25,6 @@ Follow the instructions below to set up, run, and test the application.
 
 ```
 git clone https://github.com/KhaledMoheb/IdealSolutions-TaskManagementSystem.git
-cd TaskManagementSystem.Api
 ```
 
 ### 2. Open API Project in Visual Studio
