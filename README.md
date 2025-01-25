@@ -90,12 +90,12 @@ For User1: Use user1 credentials to log in and test the restricted access (you s
 API Endpoints (Swagger)
 You can test the API using Swagger UI at http://localhost:5270/swagger. Here are the main endpoints:
 
-Login: POST /api/login/login - Logs in a user and returns a JWT token.
-Create Task: POST /api/task - Create a task (Admin only).
-Get All Tasks: GET /api/task - Get all tasks (Admin only).
-Get Task by ID: GET /api/task/{id} - Get task details by ID.
-Update Task: PUT /api/task/{id} - Update task details.
-Delete Task: DELETE /api/task/{id} - Delete a task (Admin only).
+- Login: POST /api/login/login - Logs in a user and returns a JWT token.
+- Create Task: POST /api/task - Create a task (Admin only).
+- Get All Tasks: GET /api/task - Get all tasks (Admin only).
+- Get Task by ID: GET /api/task/{id} - Get task details by ID.
+- Update Task: PUT /api/task/{id} - Update task details.
+- Delete Task: DELETE /api/task/{id} - Delete a task (Admin only).
 
 ## Part 4: Running and Testing the ASP.NET Backend in Visual Studio
 
